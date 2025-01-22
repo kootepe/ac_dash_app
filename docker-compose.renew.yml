@@ -1,0 +1,20 @@
+services:
+   certbot:
+    image: certbot/certbot:latest
+    # disable port 80 in docker-compose.prod.yml and enable here to create
+    # certificate for the first time
+    command: sh -c "certbot certonly --standalone -d koskeen.net --text --agree-tos --email eero.koskinen@oulu.fi --server https://acme-v02.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --keep-until-expiring --preferred-challenges=http"
+    # ports:
+    #   - "80:80"
+    entrypoint: ""
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt/:rw
+      - ./certbot/www:/var/www/certbot/:rw
+    environment:
+      - TERM=xterm
+    networks:
+      - web_renew
+
+networks:
+  web_renew:
+    external: true

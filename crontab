@@ -1,0 +1,2 @@
+0 0 * * 1 docker compose -f /root/oulanka-flask/docker-compose.renew.yml run --rm certbot
+1 0 * * 1 docker compose -f /root/oulanka-flask/docker-compose.prod.yml exec nginx nginx -s reload

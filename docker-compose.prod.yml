@@ -1,0 +1,47 @@
+services:
+  web:
+    build:
+      context: ./services/web
+      dockerfile: dockerfile.prod
+    command: gunicorn --bind 0.0.0.0:5000 manage:server --workers 3 --timeout 600
+    expose:
+      - 5000
+    env_file:
+      - ./.env.prod
+    depends_on:
+      - db
+    networks:
+      - default
+
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.prod.db
+    networks:
+      - default
+
+  nginx:
+    build: ./services/nginx
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot/:ro
+    ports:
+      - 80:80
+      - 443:443
+      - 1337:443
+    env_file:
+      - ./.env.prod
+    depends_on:
+      - web
+    networks:
+      - default
+      - web_renew
+
+volumes:
+  postgres_data_prod:
+
+networks:
+  web_renew:
+    external: true
