@@ -14,7 +14,7 @@ from project.ac_dash.ac_dash.views.logout import mk_logout_page
 logger = logging.getLogger("defaultLogger")
 
 
-ac_plot_route = "/dashing/"
+ac_plot_route = "/ac_dash/"
 
 mk_ac_depth(server, "/ac_depth/")
 mk_ac_plot(server, ac_plot_route)
