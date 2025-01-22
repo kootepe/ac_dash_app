@@ -28,9 +28,7 @@ logger = logging.getLogger("defaultLogger")
 
 # initiate flask server
 server = Flask(__name__, static_folder="static")
-# server.config.from_object("project.config.Config")
 server.config.from_object(os.getenv("FLASK_CONFIG", "default_config_module"))
-print(server.config)
 api = Api(server)
 
 # initiate DB
@@ -50,16 +48,10 @@ mk_volume_table()
 apply_volume_table_trigger()
 
 for user in init_users:
-    try:
-        add_user(user["username"], user["password"], user["email"], user["role"])
-    except IntegrityError:
-        print("User exists.")
-
-show_users()
+    add_user(user["username"], user["password"], user["email"], user["role"])
 
 # initiate login manager
 server.config["SECRET_KEY"] = "my_secret_key"
 login_manager = LoginManager()
 login_manager.init_app(server)
 login_manager.login_view = "auth.login_route"
-# from project.users_mgt.users_mgt import init_user_mgt
