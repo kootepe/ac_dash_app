@@ -3,15 +3,12 @@ import logging
 from flask import Flask
 from flask_restful import Api
 from flask_login import UserMixin, LoginManager
-from sqlalchemy.exc import IntegrityError
 
 
 from project.ac_dash.ac_dash.users_mgt.users_mgt import (
     db,
     User as base,
     mk_user_table,
-    add_user,
-    show_users,
 )
 
 from project.ac_dash.ac_dash.data_mgt import (
@@ -21,8 +18,6 @@ from project.ac_dash.ac_dash.data_mgt import (
     mk_volume_table,
     apply_volume_table_trigger,
 )
-
-from project.temp_users import users as init_users
 
 logger = logging.getLogger("defaultLogger")
 
@@ -47,8 +42,6 @@ mk_cycle_table()
 mk_volume_table()
 apply_volume_table_trigger()
 
-for user in init_users:
-    add_user(user["username"], user["password"], user["email"], user["role"])
 
 # initiate login manager
 server.config["SECRET_KEY"] = "my_secret_key"
