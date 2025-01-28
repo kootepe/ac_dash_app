@@ -27,7 +27,12 @@ programmatically.
 
 The dropdown currently does nothing, the app accepts the log files for from the
 AC app (The newer ones with 4 rows for each cycle) and a precalculated version
-with this format:
+Recommended to zip if using the log files since the last cycle will be dropped
+if using a single file, last cycle has its closing time in the file for the next
+day. Zipping will first concatenate all the files into one big file before
+pushing to db.
+
+Format:
 ```
 chamber_id,start_time,close_offset,open_offset,end_offset
 1,2024-01-01 00:00:00,300,600,900
@@ -41,7 +46,8 @@ Where the offsets are the seconds from start_time.
 
 Select new source from the dropdown and give it a descriptive name, it will be
 used to select which meteo data will be used for flux calculation.
-format:
+
+Format:
 ```
 datetime,air_temperature,air_pressure
 1,2024-01-01 00:30:00,-10.0,994.5
@@ -51,7 +57,7 @@ datetime,air_temperature,air_pressure
 
 Chamber height should be in meters.
 
-format:
+Format:
 ```
 datetime,chamber_id,chamber_height
 2024-01-01 12:00:00,1,0.94
@@ -61,7 +67,8 @@ datetime,chamber_id,chamber_height
 ### Initiate fluxes
 
 Select your instrument and meteo source from the dropdowns and then specify a
-range to calculate fluxes from.
+range to calculate fluxes from. If you just added your gas and meteo data,
+refresh the page and they should appear in the dropdowns.
 
 Accepts ISO8601 dates eg. YYYY-MM-DD, YYYY-MM-DD HH:MM:SS etc.
 
