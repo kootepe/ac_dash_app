@@ -23,7 +23,7 @@ app accepts .dat/.DAT .data/.DATA, .csv and .zip extensions. I'd recommend using
 zips when uploading locally but there's also an API for uploading
 programmatically.
 
-#### Upload cycles
+### Upload cycles
 
 The dropdown currently does nothing, the app accepts the log files for from the
 AC app (The newer ones with 4 rows for each cycle) and a precalculated version
@@ -37,7 +37,7 @@ chamber_id,start_time,close_offset,open_offset,end_offset
 ```
 Where the offsets are the seconds from start_time.
 
-#### Upload meteo data
+### Upload meteo data
 
 Select new source from the dropdown and give it a descriptive name, it will be
 used to select which meteo data will be used for flux calculation.
@@ -45,10 +45,9 @@ format:
 ```
 datetime,air_temperature,air_pressure
 1,2024-01-01 00:30:00,-10.0,994.5
-
 ```
 
-#### Upload volume data
+### Upload volume data
 
 Chamber height should be in meters.
 
@@ -57,12 +56,12 @@ format:
 datetime,chamber_id,chamber_height
 2024-01-01 12:00:00,1,0.94
 2024-01-08 12:00:00,2,0.75
-
 ```
 
-#### Initiate fluxes
+### Initiate fluxes
 
 Select your instrument and meteo source from the dropdowns and then specify a
 range to calculate fluxes from.
 
 Accepts ISO8601 dates eg. YYYY-MM-DD, YYYY-MM-DD HH:MM:SS etc.
+
