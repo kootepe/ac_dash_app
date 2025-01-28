@@ -26,7 +26,8 @@ programmatically.
 ### Upload cycles
 
 The dropdown currently does nothing, the app accepts the log files for from the
-AC app (The newer ones with 4 rows for each cycle) and a precalculated version
+AC app (The newer ones with 4 rows for each cycle) and a precalculated version.
+
 Recommended to zip if using the log files since the last cycle will be dropped
 if using a single file, last cycle has its closing time in the file for the next
 day. Zipping will first concatenate all the files into one big file before
@@ -50,7 +51,7 @@ used to select which meteo data will be used for flux calculation.
 Format:
 ```
 datetime,air_temperature,air_pressure
-1,2024-01-01 00:30:00,-10.0,994.5
+2024-01-01 00:30:00,-10.0,994.5
 ```
 
 ### Upload volume data
