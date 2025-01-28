@@ -1,3 +1,3 @@
 [submodule "services/web/project/ac_dash"]
 	path = services/web/project/ac_dash
-	url = git@github.com:kootepe/ac_dash.git
+	url = https://github.com/kootepe/ac_dash.git
