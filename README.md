@@ -4,7 +4,7 @@
 
 Clone the repo with:
 ```
-git clone https://github.com/kootepe/ac_dash.git
+git clone --recurse-submodules https://github.com/kootepe/ac_dash_app.git
 ```
 Add file ```.env.dev``` in the root folder with this content:
 ```
@@ -17,10 +17,17 @@ DATABASE=postgres
 FLASK_CONFIG=project.ac_dash.ac_dash.db.Config
 ```
 
-You can change the database user and password in ```docker-compose.yml```, note
-that you will need to change DATABASE_URL in ```.env.dev``` also.
+To run the app, go to root of the repo and run:
 ```
-docker compose up --build
+docker compose up
 ```
-This will run the flask development server. It's fully functional, but flask is
-full of holes and flask is intended to be ran inside a WSGI server.
+To completely reset the app and the db:
+```
+docker-compose down -v; docker compose up --build
+```
+
+Full deployment instructions to come.
+
+## Usage:
+
+[Instructions for initiating data and navigating the app here.](docs/instructions.md)
