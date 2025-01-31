@@ -1,6 +1,6 @@
 import logging
 
-from flask import redirect
+from flask import redirect, jsonify, request
 from project.server import server, User, login_manager, api
 
 from project.ac_dash.ac_dash.api.routes import register_api, auth_bp
@@ -28,15 +28,28 @@ success = mk_success(server, "/success/")
 server.register_blueprint(auth_bp)
 
 
-@server.route("/")
-def root():
-    return redirect(ac_plot_route)
-
-
 @login_manager.user_loader
 def user_loader(user_id):
     print(user_id)
     return User.query.get(user_id)
+
+
+@server.errorhandler(404)
+def not_found(error):
+    response = {
+        "error": "Not Found",
+        "message": "The requested URL was not found on the server.",
+    }
+    return jsonify(response), 404
+
+
+@server.errorhandler(415)
+def unsupported_media(error):
+    response = {
+        "error": "Unsupported media type",
+        "message": "Did not attempt to load JSON data because the request Content-Type was not application/json.",
+    }
+    return jsonify(response), 404
 
 
 if __name__ == "__main__":
