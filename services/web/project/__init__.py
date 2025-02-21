@@ -21,6 +21,11 @@ mk_ac_plot(server, ac_plot_route)
 register_api(api)
 
 
+@server.route("/")
+def root():
+    return redirect(ac_plot_route)
+
+
 login = mk_login_page(server, "/auth/login/")
 logout = mk_logout_page(server, "/logout/")
 success = mk_success(server, "/success/")
